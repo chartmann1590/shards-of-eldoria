@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eldoria - Party Detail</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter, JetBrains Mono, Anybody -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&amp;family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#dde1ff",
+                    "primary-fixed": "#ffe088",
+                    "on-primary-container": "#554300",
+                    "on-tertiary-container": "#4e442f",
+                    "tertiary-fixed": "#f0e1c3",
+                    "inverse-surface": "#dde1ff",
+                    "on-surface-variant": "#d0c5af",
+                    "inverse-on-surface": "#262e52",
+                    "surface-variant": "#2a3357",
+                    "surface": "#071033",
+                    "surface-container-high": "#1f284b",
+                    "tertiary-fixed-dim": "#d3c5a8",
+                    "on-tertiary": "#38301b",
+                    "on-secondary": "#1f2c63",
+                    "surface-container": "#151d40",
+                    "on-secondary-fixed": "#06154d",
+                    "surface-bright": "#2f375b",
+                    "primary-container": "#d4af37",
+                    "primary-fixed-dim": "#e9c349",
+                    "tertiary-container": "#bfb296",
+                    "outline-variant": "#4d4635",
+                    "on-surface": "#dde1ff",
+                    "surface-container-lowest": "#030a2e",
+                    "surface-dim": "#071033",
+                    "background": "#071033",
+                    "error": "#ffb4ab",
+                    "on-secondary-container": "#a6b2f1",
+                    "on-tertiary-fixed": "#221b08",
+                    "secondary-container": "#37437b",
+                    "secondary": "#b9c3ff",
+                    "on-primary": "#3c2f00",
+                    "on-error": "#690005",
+                    "surface-container-low": "#10193c",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#4f4630",
+                    "on-primary-fixed": "#241a00",
+                    "on-primary-fixed-variant": "#574500",
+                    "tertiary": "#dccdb0",
+                    "primary": "#f2ca50",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#b9c3ff",
+                    "on-secondary-fixed-variant": "#37437b",
+                    "outline": "#99907c",
+                    "on-background": "#dde1ff",
+                    "inverse-primary": "#735c00",
+                    "surface-tint": "#e9c349",
+                    "surface-container-highest": "#2a3357"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "panel-padding": "16px",
+                    "rivet-size": "4px",
+                    "v-stack": "12px",
+                    "safe-area-bottom": "34px",
+                    "gutter": "16px",
+                    "safe-area-top": "44px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "stat-lg": ["JetBrains Mono"],
+                    "stat-sm": ["JetBrains Mono"],
+                    "headline-md": ["Anybody"],
+                    "headline-lg": ["Anybody"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "stat-lg": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "stat-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["18px", {"lineHeight": "24px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "0.05em", "fontWeight": "800"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        }
+      }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .rivet-tl { @apply absolute top-0 left-0 w-rivet-size h-rivet-size bg-primary-fixed; }
+            .rivet-tr { @apply absolute top-0 right-0 w-rivet-size h-rivet-size bg-primary-fixed; }
+            .rivet-bl { @apply absolute bottom-0 left-0 w-rivet-size h-rivet-size bg-primary-fixed; }
+            .rivet-br { @apply absolute bottom-0 right-0 w-rivet-size h-rivet-size bg-primary-fixed; }
+            
+            .panel-9slice {
+                @apply bg-surface border-[2px] border-primary-container relative;
+                box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.1), inset -1px -1px 0px rgba(0, 0, 0, 0.5);
+            }
+            .panel-9slice-selected {
+                @apply bg-surface border-[2px] border-primary-fixed relative;
+                box-shadow: 0 0 12px rgba(255, 224, 136, 0.4), inset 1px 1px 0px rgba(255, 255, 255, 0.2), inset -1px -1px 0px rgba(0, 0, 0, 0.5);
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md h-screen w-full overflow-hidden flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar (Customized for Detail Screen with Back Action) -->
+<!-- Navigation Shell Suppressed: The presence of a 'Back' action implies a temporary departure, prioritizing the Canvas. -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-panel-padding h-14 bg-surface border-b-2 border-primary-container pt-safe-area-top box-content shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+<button aria-label="Go back" class="w-10 h-10 flex items-center justify-center text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">arrow_back</span>
+</button>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-widest uppercase">PARTY</h1>
+<!-- Trailing spacer to center the title perfectly -->
+<div class="w-10 h-10"></div>
+</header>
+<!-- Main Scrollable Canvas -->
+<main class="flex-1 w-full mt-[calc(56px+env(safe-area-inset-top))] overflow-y-auto px-panel-padding py-v-stack flex flex-col gap-v-stack pb-safe-area-bottom pb-8">
+<!-- Card 1: Kael (Selected) -->
+<article class="panel-9slice-selected p-3 flex gap-3 w-full rounded-DEFAULT cursor-pointer active:scale-[0.98] transition-transform">
+<!-- Rivets -->
+<div class="rivet-tl"></div><div class="rivet-tr"></div><div class="rivet-bl"></div><div class="rivet-br"></div>
+<!-- Selection Cursor/Indicator -->
+<div class="absolute -left-3 top-1/2 -translate-y-1/2 text-primary-fixed drop-shadow-[0_0_4px_rgba(255,224,136,0.8)]">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<!-- Portrait -->
+<div class="w-[100px] h-[120px] shrink-0 bg-surface-container-high border-[2px] border-primary-container rounded-sm relative overflow-hidden bg-cover bg-center" data-alt="A highly detailed, 16-bit inspired pixel art portrait of a noble, stern knight with silver hair and gleaming golden armor. The lighting is dramatic, casting deep shadows that emphasize his battle-hardened features. The background is a moody, deep navy void that perfectly matches the game's high-contrast, modern-retro UI aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDbR4LogE64Un5HzwsBx2X7qiLmQ4L9PvsvhcMvpUIIB2PhToLWv_2jXnCnZd9qh9VTQ764JEvx2L81VymsDZU4v6c1U64vnO6r3J1UHms83dpE_rA89gifMEbrQeOzZB0dd78sLKFmRvhE2SFtY5qx7JzmRGdj2nWQBBdWMbhFyHkPSbtDuTb4OtUYuSrOA0ZpN0IafqTBDTgNe2lNbIIvZNmSwVCBNrFafK0cQViR4_7tGk9tPMT3KSaVKSicFN_ulKzJS6yd84U');">
+<div class="absolute inset-0 shadow-[inset_0_0_12px_rgba(0,0,0,0.8)]"></div>
+</div>
+<!-- Details -->
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start gap-2">
+<h2 class="font-headline-md text-headline-md text-primary-fixed leading-tight">Sir Kael, Knight of Aerwyn</h2>
+<span class="bg-surface-container border border-primary text-primary-fixed font-label-caps text-label-caps px-1.5 py-0.5 rounded-sm whitespace-nowrap shrink-0">LV 7</span>
+</div>
+<!-- Resource Bars -->
+<div class="mt-2 flex flex-col gap-1">
+<!-- HP -->
+<div class="h-[8px] w-full bg-error-container border border-[#4a0003] rounded-sm relative overflow-hidden">
+<div class="h-full bg-error w-[85%] border-t border-[#ffdad6]/30"></div>
+</div>
+<!-- MP -->
+<div class="h-[8px] w-full bg-secondary-container border border-[#1f2c63] rounded-sm relative overflow-hidden">
+<div class="h-full bg-secondary w-[40%] border-t border-[#dde1ff]/30"></div>
+</div>
+<!-- EXP (Explicit requirement: Emerald Green. Using #10b981 to satisfy prompt despite theme constraints, applied as inline style to isolate it) -->
+<div class="h-[4px] w-full bg-surface-container-high border border-surface-bright rounded-sm relative overflow-hidden mt-0.5">
+<div class="h-full w-[70%] border-t border-white/20" style="background-color: #10b981;"></div>
+</div>
+</div>
+</div>
+<!-- Stats & Skills Grid -->
+<div class="mt-2.5">
+<div class="flex gap-4 font-stat-sm text-stat-sm text-on-surface-variant mb-2">
+<div class="flex gap-1 items-center">ATK <span class="text-primary-fixed font-stat-lg text-[14px]">17</span></div>
+<div class="flex gap-1 items-center">DEF <span class="text-primary-fixed font-stat-lg text-[14px]">12</span></div>
+<div class="flex gap-1 items-center">SPD <span class="text-primary-fixed font-stat-lg text-[14px]">9</span></div>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="border border-primary-container bg-surface-container text-primary font-label-caps text-[9px] px-1.5 py-0.5 rounded-sm">SLASH</span>
+<span class="border border-primary-container bg-surface-container text-primary font-label-caps text-[9px] px-1.5 py-0.5 rounded-sm">SHIELD</span>
+<span class="border border-primary-fixed bg-surface-container-high text-primary-fixed font-label-caps text-[9px] px-1.5 py-0.5 rounded-sm shadow-[0_0_4px_rgba(255,224,136,0.3)]">BRAVE STRIKE (LV 6)</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 2: Lyra (Inactive) -->
+<article class="panel-9slice p-3 flex gap-3 w-full rounded-DEFAULT cursor-pointer active:scale-[0.98] transition-transform opacity-90 hover:opacity-100 hover:border-primary">
+<div class="rivet-tl"></div><div class="rivet-tr"></div><div class="rivet-bl"></div><div class="rivet-br"></div>
+<!-- Portrait -->
+<div class="w-[100px] h-[120px] shrink-0 bg-surface-container-high border-[2px] border-outline-variant rounded-sm relative overflow-hidden bg-cover bg-center grayscale-[20%]" data-alt="A highly detailed, 16-bit inspired pixel art portrait of a cunning, mysterious rogue named Lyra. She wears a dark violet hood pulled low, revealing only piercing bright eyes and a subtle smirk. The lighting is low-key, heavily shadowed, fitting perfectly within the game's moody, deep navy and high-contrast gold aesthetic framework." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHSr5WU-4OAfAq8mZVq5JS_3EYOeWKmkCzrrCvcgTcXvGVqei57ZxkCPFwfi5M272taNWClRt4jbH0IYMX27bNyjwCaSrbOBF2Hs7gbR-WnlBWxrCIwG6L3pMCUvy8rsqkwq2i-e3AN4SlJzDNabThs0AgLYTGXOM1CxOjK7zG0q1gnu6vexCDieU1mNFuTFS37pK7ctbrgbyiL2TsgunpuDwZgSBZD09x42Y1lc2NQc6MO_39iChN-7GPNi27o64ZCm0eiS5COzs');">
+<div class="absolute inset-0 shadow-[inset_0_0_12px_rgba(0,0,0,0.8)] bg-surface/10"></div>
+</div>
+<!-- Details -->
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start gap-2">
+<h2 class="font-headline-md text-headline-md text-primary leading-tight">Lyra, Shadow Weaver</h2>
+<span class="bg-surface-container border border-outline-variant text-on-surface-variant font-label-caps text-label-caps px-1.5 py-0.5 rounded-sm whitespace-nowrap shrink-0">LV 6</span>
+</div>
+<!-- Resource Bars -->
+<div class="mt-2 flex flex-col gap-1 opacity-80">
+<div class="h-[8px] w-full bg-error-container border border-[#4a0003] rounded-sm relative overflow-hidden">
+<div class="h-full bg-error w-[60%] border-t border-[#ffdad6]/30"></div>
+</div>
+<div class="h-[8px] w-full bg-secondary-container border border-[#1f2c63] rounded-sm relative overflow-hidden">
+<div class="h-full bg-secondary w-[90%] border-t border-[#dde1ff]/30"></div>
+</div>
+<div class="h-[4px] w-full bg-surface-container-high border border-surface-bright rounded-sm relative overflow-hidden mt-0.5">
+<div class="h-full w-[20%] border-t border-white/20" style="background-color: #10b981;"></div>
+</div>
+</div>
+</div>
+<div class="mt-2.5">
+<div class="flex gap-4 font-stat-sm text-stat-sm text-on-surface-variant mb-2">
+<div class="flex gap-1 items-center">ATK <span class="text-primary font-stat-lg text-[14px]">14</span></div>
+<div class="flex gap-1 items-center">DEF <span class="text-primary font-stat-lg text-[14px]">8</span></div>
+<div class="flex gap-1 items-center">SPD <span class="text-primary font-stat-lg text-[14px]">16</span></div>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="border border-outline-variant bg-surface-container text-on-surface-variant font-label-caps text-[9px] px-1.5 py-0.5 rounded-sm">POISON DART</span>
+<span class="border border-outline-variant bg-surface-container text-on-surface-variant font-label-caps text-[9px] px-1.5 py-0.5 rounded-sm">STEALTH</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 3: Brann (Inactive) -->
+<article class="panel-9slice p-3 flex gap-3 w-full rounded-DEFAULT cursor-pointer active:scale-[0.98] transition-transform opacity-90 hover:opacity-100 hover:border-primary">
+<div class="rivet-tl"></div><div class="rivet-tr"></div><div class="rivet-bl"></div><div class="rivet-br"></div>
+<!-- Portrait -->
+<div class="w-[100px] h-[120px] shrink-0 bg-surface-container-high border-[2px] border-outline-variant rounded-sm relative overflow-hidden bg-cover bg-center grayscale-[20%]" data-alt="A highly detailed, 16-bit inspired pixel art portrait of a burly, weathered dwarven cleric named Brann. He sports a magnificent braided beard and holds a softly glowing golden mace. The background is a stark, deep navy layer that forces the metallic gold and deep earth tones of his armor to pop, adhering strictly to the UI's modern-retro color palette." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAnbz8wP8qKJzW_jMTK-oMsk362e0u7SWhQMe0XCHAakPrhOvh_MLKjoU5stlRAs3YFkznf7cIWEsXhvrIgBpuNcKtcJyCovzvbTqkZCug2eKVOuBi8ysdfmoUeWyqSLjPZPbt1E52EQa67YbqGR5DMd-whgw5y_qt8CMqRFD30qn9y6hlshcvpHpvOu76Hwy1BY6IBiEgfHn3MRHwPzQUi-L_aPu3knmSgN9xLbG4TeHt-PRnKEt7o91ai9sy-RY1-z3-huxss7wE');">
+<div class="absolute inset-0 shadow-[inset_0_0_12px_rgba(0,0,0,0.8)] bg-surface/10"></div>
+</div>
+<!-- Details -->
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start gap-2">
+<h2 class="font-headline-md text-headline-md text-primary leading-tight">Brann Stonefist</h2>
+<span class="bg-surface-container border border-outline-variant text-on-surface-variant font-label-caps text-label-caps px-1.5 py-0.5 rounded-sm whitespace-nowrap shrink-0">LV 7</span>
+</div>
+<!-- Resource Bars -->
+<div class="mt-2 flex flex-col gap-1 opacity-80">
+<div class="h-[8px] w-full bg-error-container border border-[#4a0003] rounded-sm relative overflow-hidden">
+<div class="h-full bg-error w-[100%] border-t border-[#ffdad6]/30"></div>
+</div>
+<div class="h-[8px] w-full bg-secondary-container border border-[#1f2c63] rounded-sm relative overflow-hidden">
+<div class="h-full bg-secondary w-[25%] border-t border-[#dde1ff]/30"></div>
+</div>
+<div class="h-[4px] w-full bg-surface-container-high border border-surface-bright rounded-sm relative overflow-hidden mt-0.5">
+<div class="h-full w-[85%] border-t border-white/20" style="background-color: #10b981;"></div>
+</div>
+</div>
+</div>
+<div class="mt-2.5">
+<div class="flex gap-4 font-stat-sm text-stat-sm text-on-surface-variant mb-2">
+<div class="flex gap-1 items-center">ATK <span class="text-primary font-stat-lg text-[14px]">11</span></div>
+<div class="flex gap-1 items-center">DEF <span class="text-primary font-stat-lg text-[14px]">18</span></div>
+<div class="flex gap-1 items-center">SPD <span class="text-primary font-stat-lg text-[14px]">5</span></div>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="border border-outline-variant bg-surface-container text-on-surface-variant font-label-caps text-[9px] px-1.5 py-0.5 rounded-sm">HEAL</span>
+<span class="border border-outline-variant bg-surface-container text-on-surface-variant font-label-caps text-[9px] px-1.5 py-0.5 rounded-sm">BLESSED ARMOR</span>
+</div>
+</div>
+</div>
+</article>
+</main>
+</body></html>

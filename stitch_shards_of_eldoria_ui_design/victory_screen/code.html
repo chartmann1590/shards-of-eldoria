@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Victory Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=AnyBody:wght@700;800&amp;family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#dde1ff",
+                        "primary-fixed": "#ffe088",
+                        "on-primary-container": "#554300",
+                        "on-tertiary-container": "#4e442f",
+                        "tertiary-fixed": "#f0e1c3",
+                        "inverse-surface": "#dde1ff",
+                        "on-surface-variant": "#d0c5af",
+                        "inverse-on-surface": "#262e52",
+                        "surface-variant": "#2a3357",
+                        "surface": "#071033",
+                        "surface-container-high": "#1f284b",
+                        "tertiary-fixed-dim": "#d3c5a8",
+                        "on-tertiary": "#38301b",
+                        "on-secondary": "#1f2c63",
+                        "surface-container": "#151d40",
+                        "on-secondary-fixed": "#06154d",
+                        "surface-bright": "#2f375b",
+                        "primary-container": "#d4af37",
+                        "primary-fixed-dim": "#e9c349",
+                        "tertiary-container": "#bfb296",
+                        "outline-variant": "#4d4635",
+                        "on-surface": "#dde1ff",
+                        "surface-container-lowest": "#030a2e",
+                        "surface-dim": "#071033",
+                        "background": "#071033",
+                        "error": "#ffb4ab",
+                        "on-secondary-container": "#a6b2f1",
+                        "on-tertiary-fixed": "#221b08",
+                        "secondary-container": "#37437b",
+                        "secondary": "#b9c3ff",
+                        "on-primary": "#3c2f00",
+                        "on-error": "#690005",
+                        "surface-container-low": "#10193c",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#4f4630",
+                        "on-primary-fixed": "#241a00",
+                        "on-primary-fixed-variant": "#574500",
+                        "tertiary": "#dccdb0",
+                        "primary": "#f2ca50",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#b9c3ff",
+                        "on-secondary-fixed-variant": "#37437b",
+                        "outline": "#99907c",
+                        "on-background": "#dde1ff",
+                        "inverse-primary": "#735c00",
+                        "surface-tint": "#e9c349",
+                        "surface-container-highest": "#2a3357"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "panel-padding": "16px",
+                        "rivet-size": "4px",
+                        "v-stack": "12px",
+                        "safe-area-bottom": "34px",
+                        "gutter": "16px",
+                        "safe-area-top": "44px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "stat-lg": ["JetBrains Mono"],
+                        "stat-sm": ["JetBrains Mono"],
+                        "headline-md": ["AnyBody"],
+                        "headline-lg": ["AnyBody"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "stat-lg": ["18px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "stat-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "0.05em", "fontWeight": "800" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* 9-Slice Panel Styling */
+        .panel-9slice {
+            background-color: theme('colors.surface-container');
+            border: 2px solid theme('colors.primary-container');
+            position: relative;
+            box-shadow: inset 1px 1px 0 0 theme('colors.surface-bright'), inset -1px -1px 0 0 theme('colors.surface-container-lowest');
+        }
+        
+        .panel-9slice::before, .panel-9slice::after,
+        .panel-rivet-bl, .panel-rivet-br {
+            content: '';
+            position: absolute;
+            width: theme('spacing.rivet-size');
+            height: theme('spacing.rivet-size');
+            background-color: theme('colors.primary-fixed');
+            z-index: 10;
+        }
+        
+        .panel-9slice::before { top: -2px; left: -2px; }
+        .panel-9slice::after { top: -2px; right: -2px; }
+        .panel-rivet-bl { bottom: -2px; left: -2px; }
+        .panel-rivet-br { bottom: -2px; right: -2px; }
+
+        /* Parchment Panel */
+        .panel-parchment {
+            background-color: theme('colors.tertiary-fixed');
+            border: 2px solid theme('colors.surface-container');
+            position: relative;
+        }
+
+        .bg-pattern {
+            background-image: radial-gradient(theme('colors.surface-container-high') 1px, transparent 1px);
+            background-size: 8px 8px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col pt-safe-area-top pb-safe-area-bottom px-gutter bg-pattern">
+<!-- Top Navigation Placeholder (Suppressed per rules as this is a transactional/end state) -->
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center gap-v-stack py-8 w-full max-w-[390px] mx-auto">
+<!-- Victory Title -->
+<div class="text-center mb-8 relative w-full">
+<h1 class="font-headline-lg text-[48px] leading-[1.1] text-primary-fixed tracking-widest uppercase drop-shadow-[0_4px_0_theme('colors.surface-container-lowest')] z-10 relative">VICTORY</h1>
+<div class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none -z-10">
+<span class="material-symbols-outlined text-primary-container fill-icon" style="font-size: 120px;">swords</span>
+</div>
+</div>
+<!-- Score Scroll Panel -->
+<div class="panel-parchment w-full p-panel-padding mb-8">
+<div class="flex flex-col gap-4">
+<!-- Stat Item -->
+<div class="flex justify-between items-center border-b border-outline-variant pb-2">
+<span class="font-body-md text-on-tertiary-container uppercase tracking-wider">Enemies Defeated</span>
+<span class="font-stat-sm text-on-primary-container">430</span>
+</div>
+<!-- Stat Item -->
+<div class="flex justify-between items-center border-b border-outline-variant pb-2">
+<span class="font-body-md text-on-tertiary-container uppercase tracking-wider">Bosses Defeated</span>
+<span class="font-stat-sm text-on-primary-container">150</span>
+</div>
+<!-- Stat Item -->
+<div class="flex justify-between items-center border-b border-outline-variant pb-2">
+<span class="font-body-md text-on-tertiary-container uppercase tracking-wider">Gold</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary-container text-[16px] fill-icon">toll</span>
+<span class="font-stat-sm text-on-primary-container">412</span>
+</div>
+</div>
+<!-- Stat Item -->
+<div class="flex justify-between items-center border-b border-outline-variant pb-2">
+<span class="font-body-md text-on-tertiary-container uppercase tracking-wider">Secrets</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary-container text-[16px]">visibility</span>
+<span class="font-stat-sm text-on-primary-container">700</span>
+</div>
+</div>
+<!-- Stat Item -->
+<div class="flex justify-between items-center pb-2">
+<span class="font-body-md text-on-tertiary-container uppercase tracking-wider">Shards</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary-container text-[16px]">diamond</span>
+<span class="font-stat-sm text-on-primary-container">1500</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Final Score Highlight -->
+<div class="panel-9slice w-full p-6 text-center mb-12">
+<div class="panel-rivet-bl"></div>
+<div class="panel-rivet-br"></div>
+<h2 class="font-label-caps text-on-surface-variant mb-2">FINAL SCORE</h2>
+<div class="font-stat-lg text-[40px] leading-none text-primary-fixed drop-shadow-[0_2px_0_theme('colors.surface-container-lowest')]">
+                3192
+            </div>
+</div>
+<!-- Action Buttons -->
+<div class="w-full flex flex-col gap-v-stack">
+<button class="w-full bg-primary-container text-on-primary-container font-headline-md py-4 rounded DEFAULT min-h-[44px] active:scale-95 transition-transform uppercase">
+                RETURN TO TITLE
+            </button>
+<button class="w-full bg-surface text-primary-container border-2 border-primary-container font-headline-md py-4 rounded DEFAULT min-h-[44px] active:scale-95 transition-transform uppercase">
+                VIEW STATS
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation Placeholder (Suppressed per rules as this is an end screen) -->
+</body></html>

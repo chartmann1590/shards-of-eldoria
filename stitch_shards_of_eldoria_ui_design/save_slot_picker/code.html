@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Save Slot Picker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500;700&amp;family=Anybody:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#dde1ff",
+                        "primary-fixed": "#ffe088",
+                        "on-primary-container": "#554300",
+                        "on-tertiary-container": "#4e442f",
+                        "tertiary-fixed": "#f0e1c3",
+                        "inverse-surface": "#dde1ff",
+                        "on-surface-variant": "#d0c5af",
+                        "inverse-on-surface": "#262e52",
+                        "surface-variant": "#2a3357",
+                        "surface": "#071033",
+                        "surface-container-high": "#1f284b",
+                        "tertiary-fixed-dim": "#d3c5a8",
+                        "on-tertiary": "#38301b",
+                        "on-secondary": "#1f2c63",
+                        "surface-container": "#151d40",
+                        "on-secondary-fixed": "#06154d",
+                        "surface-bright": "#2f375b",
+                        "primary-container": "#d4af37",
+                        "primary-fixed-dim": "#e9c349",
+                        "tertiary-container": "#bfb296",
+                        "outline-variant": "#4d4635",
+                        "on-surface": "#dde1ff",
+                        "surface-container-lowest": "#030a2e",
+                        "surface-dim": "#071033",
+                        "background": "#071033",
+                        "error": "#ffb4ab",
+                        "on-secondary-container": "#a6b2f1",
+                        "on-tertiary-fixed": "#221b08",
+                        "secondary-container": "#37437b",
+                        "secondary": "#b9c3ff",
+                        "on-primary": "#3c2f00",
+                        "on-error": "#690005",
+                        "surface-container-low": "#10193c",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#4f4630",
+                        "on-primary-fixed": "#241a00",
+                        "on-primary-fixed-variant": "#574500",
+                        "tertiary": "#dccdb0",
+                        "primary": "#f2ca50",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#b9c3ff",
+                        "on-secondary-fixed-variant": "#37437b",
+                        "outline": "#99907c",
+                        "on-background": "#dde1ff",
+                        "inverse-primary": "#735c00",
+                        "surface-tint": "#e9c349",
+                        "surface-container-highest": "#2a3357"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "panel-padding": "16px",
+                        "rivet-size": "4px",
+                        "v-stack": "12px",
+                        "safe-area-bottom": "34px",
+                        "gutter": "16px",
+                        "safe-area-top": "44px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "stat-lg": ["JetBrains Mono"],
+                        "stat-sm": ["JetBrains Mono"],
+                        "headline-md": ["Anybody"],
+                        "headline-lg": ["Anybody"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "stat-lg": ["18px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "stat-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "0.05em", "fontWeight": "800" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 9-Slice Panel Base */
+        .rpg-panel {
+            background-color: #16235A;
+            border: 2px solid theme('colors.primary-container');
+            position: relative;
+            box-shadow: 
+                inset 1px 1px 0px 0px rgba(255,255,255,0.1),
+                inset -1px -1px 0px 0px rgba(0,0,0,0.4);
+        }
+
+        /* Active Panel Glow */
+        .rpg-panel-active {
+            border-color: theme('colors.primary-fixed');
+            box-shadow: 
+                0 0 15px rgba(255, 224, 136, 0.4),
+                inset 1px 1px 0px 0px rgba(255,255,255,0.2),
+                inset -1px -1px 0px 0px rgba(0,0,0,0.5);
+            background-color: theme('colors.surface-container-high');
+        }
+
+        /* Rivets */
+        .rpg-panel::before, .rpg-panel::after,
+        .rpg-panel > .rivet-helper::before, .rpg-panel > .rivet-helper::after {
+            content: '';
+            position: absolute;
+            width: theme('spacing.rivet-size');
+            height: theme('spacing.rivet-size');
+            background-color: #FFD86B;
+            border: 1px solid #8A6D1C;
+        }
+
+        .rpg-panel::before { top: -2px; left: -2px; }
+        .rpg-panel::after { top: -2px; right: -2px; }
+        .rpg-panel > .rivet-helper::before { bottom: -2px; left: -2px; }
+        .rpg-panel > .rivet-helper::after { bottom: -2px; right: -2px; }
+
+        /* Cursor Element */
+        .rpg-cursor {
+            color: theme('colors.primary-container');
+            margin-right: 8px;
+            font-size: 14px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="pt-safe-area-top pb-safe-area-bottom px-gutter flex flex-col h-screen overflow-hidden">
+<!-- TopAppBar -->
+<header class="w-full top-0 border-2 border-primary-container bg-surface border-b-2 border-primary-container relative after:content-[''] after:absolute after:-bottom-1 after:-right-1 after:w-1 after:h-1 after:bg-primary-fixed fixed top-0 left-0 z-50 flex justify-between items-center px-panel-padding h-14">
+<div class="flex items-center">
+<button class="mr-4 text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary tracking-widest">SELECT A SAVE SLOT</h1>
+</div>
+</header>
+<!-- Main Content Canvas (Scrollable) -->
+<main class="flex-1 mt-16 mb-24 overflow-y-auto hide-scrollbar flex flex-col gap-v-stack py-4">
+<!-- Slot 1 (Active/Selected) -->
+<button class="rpg-panel rpg-panel-active rounded text-left p-4 flex gap-4 min-h-[120px] items-center w-full active:scale-[0.98] transition-transform relative group">
+<div class="rivet-helper"></div>
+<!-- Cursor -->
+<div class="absolute left-[-16px] top-1/2 -translate-y-1/2 opacity-100 transition-opacity">
+<span class="rpg-cursor">▶</span>
+</div>
+<!-- Portrait -->
+<div class="w-16 h-16 rounded border border-primary-container bg-surface-dim flex-shrink-0 relative overflow-hidden">
+<img alt="Hero Portrait" class="w-full h-full object-cover" data-alt="A pixel-art style portrait of a young male warrior with messy dark hair and a confident smirk. He is wearing somewhat worn, leather and iron armor. The style is reminiscent of classic 16-bit JRPGs, utilizing a limited color palette of deep blues, browns, and metallic greys, rendered in high contrast against a dark navy background. The lighting is dramatic, highlighting his features." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwkutlfMEn4p92-e_Ho1auvfA8ACl-KEdOK0LWwaxHORl6reWNot7lnehFtX869a409OOXd0hf3yctrsCAYasiF8JqXcQr8XZyRDaCZ2azJKt9-VLPuETIAPEzX_QexzCXgmOEljcmMGMuall49GJr1tPmvOxHnIzmQ2lsI8jlylJToZkL-T_hjt9XsjN1EG6g0Sl7EVVo5ZoVTxdzwlzsEaZrgBHYkqr8lfeqGpxvjzO9OZkGj-FVlhARuwirDYM_YD3S4TcJqrE"/>
+<!-- Level Badge overlay -->
+<div class="absolute bottom-0 right-0 bg-primary-container text-on-primary-container font-stat-sm text-stat-sm px-1 rounded-tl">
+                    Lv5
+                </div>
+</div>
+<!-- Save Details -->
+<div class="flex-1 flex flex-col gap-1 border-b-2 border-outline pb-1">
+<div class="flex justify-between items-start">
+<h2 class="font-headline-md text-headline-md text-primary-fixed truncate">Slot 1 • Chapter II: Whispering Forest</h2>
+</div>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 font-body-md text-body-md text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">group</span>
+<span>Party</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>02:14</span>
+</div>
+</div>
+<div class="font-label-caps text-label-caps text-outline mt-1">
+                    Saved 2 hours ago
+                </div>
+</div>
+</button>
+<!-- Slot 2 (Empty) -->
+<button class="rpg-panel rounded text-center p-4 flex flex-col justify-center items-center min-h-[120px] w-full active:scale-[0.98] transition-transform hover:bg-surface-variant">
+<div class="rivet-helper"></div>
+<div class="font-body-lg text-body-lg text-outline-variant mb-3">
+                — Empty Slot —
+            </div>
+<div class="bg-primary-container text-surface bg-primary text-on-primary font-headline-md text-headline-md py-2 px-6 rounded-sm shadow-md flex items-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                New Game
+            </div>
+</button>
+<!-- Slot 3 (Empty) -->
+<button class="rpg-panel rounded text-center p-4 flex flex-col justify-center items-center min-h-[120px] w-full active:scale-[0.98] transition-transform hover:bg-surface-variant">
+<div class="rivet-helper"></div>
+<div class="font-body-lg text-body-lg text-outline-variant mb-3">
+                — Empty Slot —
+            </div>
+<div class="bg-primary-container text-surface bg-primary text-on-primary font-headline-md text-headline-md py-2 px-6 rounded-sm shadow-md flex items-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                New Game
+            </div>
+</button>
+</main>
+<!-- Bottom Action Bar (Fixed) -->
+<div class="fixed bottom-0 left-0 w-full bg-surface-container border-t-2 border-primary-container p-4 pb-safe-area-bottom flex gap-4 z-40 shadow-[0_-4px_20px_rgba(0,0,0,0.5)]">
+<!-- Delete Button (Secondary/Red) -->
+<button class="flex-1 bg-surface-container-low border-2 border-error-container text-error font-headline-md text-headline-md py-3 rounded flex justify-center items-center gap-2 active:scale-95 transition-transform hover:bg-surface-variant">
+<span class="material-symbols-outlined">delete</span>
+            DELETE
+        </button>
+<!-- Load Button (Primary/Gold) -->
+<button class="flex-[2] bg-primary-container text-on-primary-container font-headline-lg text-headline-lg py-3 rounded flex justify-center items-center gap-2 active:scale-95 transition-transform hover:brightness-110 shadow-lg shadow-black/30 border-2 border-primary-fixed-dim">
+            LOAD
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+</body></html>

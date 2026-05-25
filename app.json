@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Shards of Eldoria",
+    "slug": "shards-of-eldoria",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "scheme": "shardsofeldoria",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.chartmann1590.shardsofeldoria",
+      "buildNumber": "1"
+    },
+    "android": {
+      "package": "com.chartmann1590.shardsofeldoria",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "backgroundColor": "#071033",
+        "foregroundImage": "./assets/adaptive-icon.png"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-av"
+    ],
+    "newArchEnabled": true
+  }
+}

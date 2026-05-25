@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Pause Menu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@700;800&amp;family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#dde1ff",
+                        "primary-fixed": "#ffe088",
+                        "on-primary-container": "#554300",
+                        "on-tertiary-container": "#4e442f",
+                        "tertiary-fixed": "#f0e1c3",
+                        "inverse-surface": "#dde1ff",
+                        "on-surface-variant": "#d0c5af",
+                        "inverse-on-surface": "#262e52",
+                        "surface-variant": "#2a3357",
+                        "surface": "#071033",
+                        "surface-container-high": "#1f284b",
+                        "tertiary-fixed-dim": "#d3c5a8",
+                        "on-tertiary": "#38301b",
+                        "on-secondary": "#1f2c63",
+                        "surface-container": "#151d40",
+                        "on-secondary-fixed": "#06154d",
+                        "surface-bright": "#2f375b",
+                        "primary-container": "#d4af37",
+                        "primary-fixed-dim": "#e9c349",
+                        "tertiary-container": "#bfb296",
+                        "outline-variant": "#4d4635",
+                        "on-surface": "#dde1ff",
+                        "surface-container-lowest": "#030a2e",
+                        "surface-dim": "#071033",
+                        "background": "#071033",
+                        "error": "#ffb4ab",
+                        "on-secondary-container": "#a6b2f1",
+                        "on-tertiary-fixed": "#221b08",
+                        "secondary-container": "#37437b",
+                        "secondary": "#b9c3ff",
+                        "on-primary": "#3c2f00",
+                        "on-error": "#690005",
+                        "surface-container-low": "#10193c",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#4f4630",
+                        "on-primary-fixed": "#241a00",
+                        "on-primary-fixed-variant": "#574500",
+                        "tertiary": "#dccdb0",
+                        "primary": "#f2ca50",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#b9c3ff",
+                        "on-secondary-fixed-variant": "#37437b",
+                        "outline": "#99907c",
+                        "on-background": "#dde1ff",
+                        "inverse-primary": "#735c00",
+                        "surface-tint": "#e9c349",
+                        "surface-container-highest": "#2a3357"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "panel-padding": "16px",
+                        "rivet-size": "4px",
+                        "v-stack": "12px",
+                        "safe-area-bottom": "34px",
+                        "gutter": "16px",
+                        "safe-area-top": "44px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "stat-lg": ["JetBrains Mono"],
+                        "stat-sm": ["JetBrains Mono"],
+                        "headline-md": ["Anybody"],
+                        "headline-lg": ["Anybody"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "stat-lg": ["18px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "stat-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "0.05em", "fontWeight": "800" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>body {
+    /* Background representing the paused game world behind the overlay */
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAmDHo2-M9gGl7Rv0m4Mdz0Qr9v4CfQDp3Z4nsOjmSNVNjaThiVAWvOCueZJlDbUfUMFKknT6BB3I8Mp7s6S3s1RTbwq6RHn54voSC2IK5_C9KmWxE69TK9jAP7jBzT-PAnAEvfy4B82b4y81KK1jj4La6o0EHa0x90z74TWYd0NVLz6Dj4hc4RsR37zFVHm2CzLis8pl0gtlENKPMBCVA2v8u_w7l0JTCL4z0VP9ilaNT8ydw0BB3jTdnFn76d2kC2L-H04ccBAaY);
+    background-size: cover;
+    background-position: center
+    }
+.rivet-tl {
+    top: -2px;
+    left: -2px
+    }
+.rivet-tr {
+    top: -2px;
+    right: -2px
+    }
+.rivet-bl {
+    bottom: -2px;
+    left: -2px
+    }
+.rivet-br {
+    bottom: -2px;
+    right: -2px
+    }
+/* 9-slice simulation for main panel */
+.panel-depth {
+    box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 0 rgba(0, 0, 0, 0.5)
+    }
+/* Inner panel simulation */
+.inner-panel-depth {
+    box-shadow: inset 1px 1px 0 0 rgba(0, 0, 0, 0.4), inset -1px -1px 0 0 rgba(255, 255, 255, 0.05)
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface w-[390px] h-[844px] mx-auto relative overflow-hidden select-none touch-none">
+<!-- Translucent Dark Overlay -->
+<div class="absolute inset-0 bg-surface/80 backdrop-blur-sm z-40 flex items-center justify-center p-gutter">
+<!-- Pause Menu Modal (Layer 2) -->
+<div class="relative w-full max-w-sm bg-[#1F3279] border-2 border-[#FFD86B] panel-depth flex flex-col pt-safe-area-top pb-safe-area-bottom px-panel-padding animate-[fadeIn_0.2s_ease-out]">
+<!-- Rivets (Bright Gold for Layer 2) -->
+<div class="absolute w-rivet-size h-rivet-size bg-[#FFD86B] rivet-tl"></div>
+<div class="absolute w-rivet-size h-rivet-size bg-[#FFD86B] rivet-tr"></div>
+<div class="absolute w-rivet-size h-rivet-size bg-[#FFD86B] rivet-bl"></div>
+<div class="absolute w-rivet-size h-rivet-size bg-[#FFD86B] rivet-br"></div>
+<!-- Header -->
+<div class="flex justify-between items-center mb-v-stack">
+<h1 class="font-headline-lg text-headline-lg text-primary-fixed tracking-widest drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">MENU</h1>
+<button aria-label="Settings" class="w-10 h-10 flex items-center justify-center text-primary-fixed hover:text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+</button>
+</div>
+<!-- 2x2 Grid Tabs -->
+<div class="grid grid-cols-2 gap-4 mb-8">
+<!-- STATS -->
+<button class="bg-[#0B1437] border border-outline border-b-2 hover:bg-surface-variant active:translate-y-px active:border-b transition-all flex flex-col items-center justify-center p-4 gap-2 inner-panel-depth group">
+<span class="material-symbols-outlined text-error text-[32px] group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant group-hover:text-primary-fixed">STATS</span>
+</button>
+<!-- PARTY -->
+<button class="bg-[#0B1437] border border-outline border-b-2 hover:bg-surface-variant active:translate-y-px active:border-b transition-all flex flex-col items-center justify-center p-4 gap-2 inner-panel-depth group">
+<span class="material-symbols-outlined text-primary-fixed text-[32px] group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">swords</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant group-hover:text-primary-fixed">PARTY</span>
+</button>
+<!-- INVENTORY -->
+<button class="bg-[#0B1437] border border-outline border-b-2 hover:bg-surface-variant active:translate-y-px active:border-b transition-all flex flex-col items-center justify-center p-4 gap-2 inner-panel-depth group">
+<span class="material-symbols-outlined text-secondary-fixed text-[32px] group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">liquor</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant group-hover:text-primary-fixed">INVENTORY</span>
+</button>
+<!-- SAVE -->
+<button class="bg-[#0B1437] border border-outline border-b-2 hover:bg-surface-variant active:translate-y-px active:border-b transition-all flex flex-col items-center justify-center p-4 gap-2 inner-panel-depth group">
+<span class="material-symbols-outlined text-tertiary-fixed text-[32px] group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">save</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant group-hover:text-primary-fixed">SAVE</span>
+</button>
+</div>
+<!-- Spacer to push buttons to bottom -->
+<div class="flex-grow"></div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-v-stack mt-auto">
+<!-- Resume Button (Primary) -->
+<button class="w-full h-[44px] bg-primary-container text-surface font-headline-md text-headline-md rounded-[2px] active:scale-[0.98] transition-transform shadow-[0_4px_0_0_#735c00] active:shadow-[0_0px_0_0_#735c00] active:translate-y-[4px]">
+                    Resume
+                </button>
+<!-- Return to Title (Secondary) -->
+<button class="w-full h-[44px] bg-[#0B1437] border-2 border-primary-container text-primary-fixed font-headline-md text-headline-md rounded-[2px] active:scale-[0.98] transition-transform hover:bg-[#16235A]">
+                    Return to Title
+                </button>
+</div>
+</div>
+</div>
+</body></html>

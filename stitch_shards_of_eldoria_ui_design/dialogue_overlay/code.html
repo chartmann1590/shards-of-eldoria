@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dialogue Overlay</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500;700&amp;family=Anybody:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#dde1ff",
+                        "primary-fixed": "#ffe088",
+                        "on-primary-container": "#554300",
+                        "on-tertiary-container": "#4e442f",
+                        "tertiary-fixed": "#f0e1c3",
+                        "inverse-surface": "#dde1ff",
+                        "on-surface-variant": "#d0c5af",
+                        "inverse-on-surface": "#262e52",
+                        "surface-variant": "#2a3357",
+                        "surface": "#071033",
+                        "surface-container-high": "#1f284b",
+                        "tertiary-fixed-dim": "#d3c5a8",
+                        "on-tertiary": "#38301b",
+                        "on-secondary": "#1f2c63",
+                        "surface-container": "#151d40",
+                        "on-secondary-fixed": "#06154d",
+                        "surface-bright": "#2f375b",
+                        "primary-container": "#d4af37",
+                        "primary-fixed-dim": "#e9c349",
+                        "tertiary-container": "#bfb296",
+                        "outline-variant": "#4d4635",
+                        "on-surface": "#dde1ff",
+                        "surface-container-lowest": "#030a2e",
+                        "surface-dim": "#071033",
+                        "background": "#071033",
+                        "error": "#ffb4ab",
+                        "on-secondary-container": "#a6b2f1",
+                        "on-tertiary-fixed": "#221b08",
+                        "secondary-container": "#37437b",
+                        "secondary": "#b9c3ff",
+                        "on-primary": "#3c2f00",
+                        "on-error": "#690005",
+                        "surface-container-low": "#10193c",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#4f4630",
+                        "on-primary-fixed": "#241a00",
+                        "on-primary-fixed-variant": "#574500",
+                        "tertiary": "#dccdb0",
+                        "primary": "#f2ca50",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#b9c3ff",
+                        "on-secondary-fixed-variant": "#37437b",
+                        "outline": "#99907c",
+                        "on-background": "#dde1ff",
+                        "inverse-primary": "#735c00",
+                        "surface-tint": "#e9c349",
+                        "surface-container-highest": "#2a3357"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "panel-padding": "16px",
+                        "rivet-size": "4px",
+                        "v-stack": "12px",
+                        "safe-area-bottom": "34px",
+                        "gutter": "16px",
+                        "safe-area-top": "44px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "stat-lg": ["JetBrains Mono"],
+                        "stat-sm": ["JetBrains Mono"],
+                        "headline-md": ["Anybody"],
+                        "headline-lg": ["Anybody"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "stat-lg": ["18px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "stat-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "0.05em", "fontWeight": "800" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .pixel-rivet {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #ffe088; /* primary-fixed roughly matches Bright Gold */
+        }
+        .rivet-tl { top: 4px; left: 4px; }
+        .rivet-tr { top: 4px; right: 4px; }
+        .rivet-bl { bottom: 4px; left: 4px; }
+        .rivet-br { bottom: 4px; right: 4px; }
+
+        .nine-slice-panel {
+            background-color: #151d40; /* surface-container as Navy panel */
+            border: 2px solid #d4af37; /* primary-container as Primary Gold border */
+            position: relative;
+            box-shadow: inset 1px 1px 0 0 #2a3357, /* top/left highlight */
+                        inset -1px -1px 0 0 #071033; /* bottom/right shadow */
+        }
+        
+        .nine-slice-popup {
+             background-color: #1f284b; /* surface-container-high */
+             border: 2px solid #ffe088; /* primary-fixed as Bright Gold */
+             position: relative;
+             box-shadow: inset 1px 1px 0 0 #2f375b,
+                         inset -1px -1px 0 0 #0b1437;
+        }
+
+        .cursor-arrow::before {
+            content: "▶";
+            color: #d4af37; /* primary-container */
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .animate-blink {
+            animation: blink 1s step-end infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col relative overflow-hidden antialiased">
+<!-- Faux Background (Screen 3 representation) -->
+<div class="absolute inset-0 bg-cover bg-center z-0" data-alt="A dense, magical forest viewed from a high-angle isometric perspective, similar to a classic 16-bit JRPG map but rendered in high fidelity. Tall ancient trees with deep green leaves obscure a winding dirt path. A small, sparkling brook cuts through the lower section. The lighting is moody and cinematic, with shafts of light piercing the canopy, casting deep navy shadows that align with a tactical console aesthetic. The overall mood is epic, adventurous, and slightly mysterious." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABH1nRkJ2HDLoUhSVA1tis_SIUmYN92S4k89gC5GLU6w2OehZlO9OXoSWBlfbRuywsyyVhz3F3vAZaTrSgJaLpe42_-DXbpXn0FhDALJ0nkBKf2MYJdsye_7fjEHja9alyacuWuEw61eY61ucfIwkUca18ScOI4OcV-JePW_CCsXIHqwNx-Jq3j1krCyfXpaGEufhjcsPbRBy32g7f8mlaVlWTclJbkLpf62-3l7WDc4sV_HZ7c8e0YUhxrlbE-rB_23tOwyiItJE');">
+<!-- Semi-transparent overlay to darken background for dialogue focus -->
+<div class="absolute inset-0 bg-surface/40 z-10"></div>
+</div>
+<!-- Screen Content Wrapper -->
+<main class="relative z-20 flex-1 flex flex-col justify-end px-gutter pb-safe-area-bottom pointer-events-none">
+<!-- Dialogue Overlay Container -->
+<!-- Takes up roughly bottom 38% of a typical 844px height screen (approx 320px max) -->
+<div class="w-full h-[335px] min-h-[280px] flex flex-col gap-v-stack pointer-events-auto">
+<!-- Dialogue Panel -->
+<div class="nine-slice-popup w-full p-panel-padding flex gap-gutter flex-1 relative">
+<!-- Rivets -->
+<div class="pixel-rivet rivet-tl"></div>
+<div class="pixel-rivet rivet-tr"></div>
+<div class="pixel-rivet rivet-bl"></div>
+<div class="pixel-rivet rivet-br"></div>
+<!-- Portrait -->
+<div class="w-[96px] h-[96px] border border-outline-variant bg-surface-dim shrink-0 overflow-hidden relative">
+<img alt="Lyra Portrait" class="w-full h-full object-cover" data-alt="A pixel-precise, high-fidelity portrait of an adventurous fantasy female character named Lyra. She has striking features, dark hair, and wears subtly detailed medieval-fantasy armor or tunic. The background of the portrait is a deep navy blue, matching a 16-bit modern-retro JRPG aesthetic. The lighting is dramatic, highlighting her determined expression, fitting perfectly within a tactical console smartphone game UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQQihmFMG7KGrjwqClfnRa38gGSJMjvrWJ7yd3GqCjIWR9tBSqAzJahOvyPNkYzjHISsPPk3wqkQKIUfnMtshGjrS-a-x1q8OT309BbeqFx2epFHd1VZrYi4SiMOW_XRqVJ99rDNlsKiE6h0hlnyIBnSyVStVh_QhFi2a2BtWysgTMGRwFFv9kKjygleFcEcFi_3VsWTJnq-LBqsHbS41BW7BpuC9DxQU5WJhE4U6S9lVfD42JrwPMyNOchKCfQgFeH5i9Hue5YW8"/>
+<!-- Inner shadow to match aesthetic -->
+<div class="absolute inset-0 shadow-[inset_1px_1px_0_rgba(255,255,255,0.1),inset_-1px_-1px_0_rgba(0,0,0,0.4)] pointer-events-none"></div>
+</div>
+<!-- Text Area -->
+<div class="flex-1 flex flex-col h-full relative">
+<!-- Speaker Name -->
+<h2 class="font-headline-md text-headline-md text-primary mb-2 tracking-wide uppercase">Lyra</h2>
+<!-- Dialogue Text -->
+<p class="font-body-lg text-body-lg text-tertiary-fixed leading-relaxed flex-1">
+                        The shards… I can feel one of them nearby. Through the trees, beyond the brook.
+                    </p>
+<!-- Blinking Indicator -->
+<div class="absolute bottom-0 right-0 animate-blink text-primary">
+                        ▼
+                    </div>
+</div>
+</div>
+<!-- Choices Panel -->
+<div class="nine-slice-panel w-full p-3 flex flex-col gap-2 relative">
+<!-- Rivets -->
+<div class="pixel-rivet rivet-tl"></div>
+<div class="pixel-rivet rivet-tr"></div>
+<div class="pixel-rivet rivet-bl"></div>
+<div class="pixel-rivet rivet-br"></div>
+<!-- Choice 1 (Selected/Hover state representation) -->
+<button class="w-full text-left bg-surface/50 p-3 relative pl-8 group hover:bg-surface-variant transition-colors border border-transparent hover:border-outline-variant flex items-center min-h-[44px]">
+<span class="cursor-arrow opacity-100 transition-opacity"></span>
+<span class="font-body-lg text-body-lg text-primary-fixed group-hover:text-primary z-10 relative">Follow her lead.</span>
+<!-- Underline for selected item -->
+<div class="absolute bottom-0 left-8 right-3 h-[2px] bg-tertiary-fixed/30 z-0"></div>
+</button>
+<!-- Choice 2 -->
+<button class="w-full text-left p-3 relative pl-8 group hover:bg-surface-variant transition-colors border border-transparent hover:border-outline-variant flex items-center min-h-[44px]">
+<span class="cursor-arrow opacity-0 group-hover:opacity-100 transition-opacity"></span>
+<span class="font-body-lg text-body-lg text-on-surface-variant group-hover:text-primary z-10 relative">Ask about the shards first.</span>
+<!-- Underline (hidden by default, shows on hover) -->
+<div class="absolute bottom-0 left-8 right-3 h-[2px] bg-tertiary-fixed/30 z-0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</button>
+</div>
+</div>
+</main>
+</body></html>

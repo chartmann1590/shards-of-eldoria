@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Shards of Eldoria - Title Screen</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts for typography tokens -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@700;800&amp;family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#dde1ff",
+                    "primary-fixed": "#ffe088",
+                    "on-primary-container": "#554300",
+                    "on-tertiary-container": "#4e442f",
+                    "tertiary-fixed": "#f0e1c3",
+                    "inverse-surface": "#dde1ff",
+                    "on-surface-variant": "#d0c5af",
+                    "inverse-on-surface": "#262e52",
+                    "surface-variant": "#2a3357",
+                    "surface": "#071033",
+                    "surface-container-high": "#1f284b",
+                    "tertiary-fixed-dim": "#d3c5a8",
+                    "on-tertiary": "#38301b",
+                    "on-secondary": "#1f2c63",
+                    "surface-container": "#151d40",
+                    "on-secondary-fixed": "#06154d",
+                    "surface-bright": "#2f375b",
+                    "primary-container": "#d4af37",
+                    "primary-fixed-dim": "#e9c349",
+                    "tertiary-container": "#bfb296",
+                    "outline-variant": "#4d4635",
+                    "on-surface": "#dde1ff",
+                    "surface-container-lowest": "#030a2e",
+                    "surface-dim": "#071033",
+                    "background": "#071033",
+                    "error": "#ffb4ab",
+                    "on-secondary-container": "#a6b2f1",
+                    "on-tertiary-fixed": "#221b08",
+                    "secondary-container": "#37437b",
+                    "secondary": "#b9c3ff",
+                    "on-primary": "#3c2f00",
+                    "on-error": "#690005",
+                    "surface-container-low": "#10193c",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#4f4630",
+                    "on-primary-fixed": "#241a00",
+                    "on-primary-fixed-variant": "#574500",
+                    "tertiary": "#dccdb0",
+                    "primary": "#f2ca50",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#b9c3ff",
+                    "on-secondary-fixed-variant": "#37437b",
+                    "outline": "#99907c",
+                    "on-background": "#dde1ff",
+                    "inverse-primary": "#735c00",
+                    "surface-tint": "#e9c349",
+                    "surface-container-highest": "#2a3357"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "panel-padding": "16px",
+                    "rivet-size": "4px",
+                    "v-stack": "12px",
+                    "safe-area-bottom": "34px",
+                    "gutter": "16px",
+                    "safe-area-top": "44px"
+            },
+            "fontFamily": {
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "label-caps": [
+                            "Inter"
+                    ],
+                    "stat-lg": [
+                            "jetbrainsMono"
+                    ],
+                    "stat-sm": [
+                            "jetbrainsMono"
+                    ],
+                    "headline-md": [
+                            "anybody"
+                    ],
+                    "headline-lg": [
+                            "anybody"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "11px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "stat-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "stat-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-md": [
+                            "18px",
+                            {
+                                    "lineHeight": "24px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "800"
+                            }
+                    ],
+                    "body-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Tactical CRT Scanline Effect Overlay */
+        .scanlines::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 50;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+
+        /* 9-Slice Style Border Utilities */
+        .panel-border {
+            border: 2px solid theme('colors.primary-container');
+            box-shadow: inset 1px 1px 0 theme('colors.surface-bright'), 
+                        inset -1px -1px 0 rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        /* Button Press Effect */
+        .btn-press:active {
+            transform: translateY(2px);
+            box-shadow: inset 1px 1px 0 rgba(0,0,0,0.5), 
+                        inset -1px -1px 0 theme('colors.surface-bright');
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-lg text-body-lg h-[884px] w-full flex flex-col relative overflow-hidden select-none scanlines antialiased">
+<!-- Subtle Radial Gold Glow Background -->
+<div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,_theme(colors.primary-container/0.15)_0%,_transparent_60%)]"></div>
+<!-- Faint Silhouette Decorations -->
+<div class="absolute top-12 left-8 opacity-10 pointer-events-none transform -rotate-45">
+<span class="material-symbols-outlined text-[120px] text-primary" style="font-variation-settings: 'FILL' 1;">swords</span>
+</div>
+<div class="absolute bottom-24 right-8 opacity-10 pointer-events-none transform rotate-12">
+<span class="material-symbols-outlined text-[120px] text-primary" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center px-gutter pt-safe-area-top pb-safe-area-bottom relative z-10 w-full max-w-md mx-auto">
+<!-- Logo Section -->
+<div class="flex flex-col items-center mb-12 transform scale-125 transition-transform duration-1000 ease-out" id="logo-container">
+<h2 class="text-primary font-headline-md text-headline-md tracking-[0.3em] mb-1 opacity-90 drop-shadow-md">
+                SHARDS OF
+            </h2>
+<h1 class="text-primary-fixed font-headline-lg text-headline-lg uppercase tracking-wider text-center" style="text-shadow: 0 3px 0 theme('colors.tertiary-container'), 0 -3px 0 theme('colors.tertiary-container'), 3px 0 0 theme('colors.tertiary-container'), -3px 0 0 theme('colors.tertiary-container'), 0 6px 12px rgba(0,0,0,0.8);">
+                Eldoria
+            </h1>
+<!-- Gold Flourish Divider -->
+<div class="flex items-center justify-center w-[240px] mt-6 opacity-80">
+<div class="h-[2px] bg-gradient-to-r from-transparent to-primary flex-grow"></div>
+<div class="w-3 h-3 rotate-45 bg-primary-fixed border border-on-primary-container mx-2 shadow-[0_0_8px_theme(colors.primary)]"></div>
+<div class="h-[2px] bg-gradient-to-l from-transparent to-primary flex-grow"></div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="w-full flex flex-col gap-v-stack mt-8 px-4">
+<!-- NEW GAME (Primary Button) -->
+<button class="relative w-full min-h-[56px] flex items-center justify-center bg-primary-container text-on-primary-container font-headline-md text-headline-md rounded border-2 border-primary-fixed shadow-[inset_1px_1px_0_theme(colors.primary-fixed),inset_-2px_-2px_0_theme(colors.inverse-primary),0_4px_8px_rgba(0,0,0,0.5)] btn-press transition-all group overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent pointer-events-none"></div>
+<span class="relative z-10 flex items-center gap-2">
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity -ml-6 text-on-primary-container" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                    NEW GAME
+                </span>
+</button>
+<!-- CONTINUE (Disabled Secondary) -->
+<button class="relative w-full min-h-[56px] flex items-center justify-center bg-surface-container border-2 border-outline-variant text-outline font-headline-md text-headline-md rounded opacity-60 cursor-not-allowed shadow-[inset_1px_1px_0_theme(colors.surface-bright),inset_-1px_-1px_0_rgba(0,0,0,0.5)]" disabled="">
+<span class="flex items-center gap-2">
+                    CONTINUE
+                </span>
+</button>
+<!-- SETTINGS (Secondary Button) -->
+<button class="relative w-full min-h-[56px] flex items-center justify-center bg-surface border-2 border-primary-container text-primary-container font-headline-md text-headline-md rounded shadow-[inset_1px_1px_0_theme(colors.surface-bright),inset_-1px_-1px_0_rgba(0,0,0,0.5),0_4px_6px_rgba(0,0,0,0.3)] btn-press transition-all group">
+<span class="relative z-10 flex items-center gap-2 group-hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                    SETTINGS
+                </span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="absolute bottom-safe-area-bottom w-full text-center pb-4 pointer-events-none z-20">
+<p class="text-on-surface-variant font-label-caps text-label-caps opacity-70 tracking-widest">
+            v0.1 — © Chapter I
+        </p>
+</footer>
+<script>
+        // Simple intro animation script
+        document.addEventListener('DOMContentLoaded', () => {
+            const logo = document.getElementById('logo-container');
+            // Start slightly scaled up and fade in
+            logo.style.opacity = '0';
+            logo.style.transform = 'scale(1.1) translateY(-20px)';
+            
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    logo.style.transition = 'all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1)';
+                    logo.style.opacity = '1';
+                    logo.style.transform = 'scale(1) translateY(0)';
+                }, 100);
+            });
+        });
+    </script>
+</body></html>
