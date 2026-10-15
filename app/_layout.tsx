@@ -1,12 +1,9 @@
-﻿import { Stack } from 'expo-router';
+import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import * as Font from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
-import { colors, typography } from '../src/theme';
-
-SplashScreen.preventAutoHideAsync();
+import { colors } from '../src/theme';
 
 const styles = StyleSheet.create({
   loadingContainer: {
@@ -29,25 +26,20 @@ export default function RootLayout() {
     async function loadFonts() {
       try {
         await Font.loadAsync({
-          'Anybody-800': require('@expo-google-fonts/anybody/fonts/Anybody_800ExtraBold.ttf'),
-          'Inter-400': require('@expo-google-fonts/inter/fonts/Inter_400Regular.ttf'),
-          'Inter-600': require('@expo-google-fonts/inter/fonts/Inter_600SemiBold.ttf'),
-          'Inter-700': require('@expo-google-fonts/inter/fonts/Inter_700Bold.ttf'),
-          'JetBrainsMono-400': require('@expo-google-fonts/jetbrains-mono/fonts/JetBrainsMono_400Regular.ttf'),
-          'JetBrainsMono-700': require('@expo-google-fonts/jetbrains-mono/fonts/JetBrainsMono_700Bold.ttf'),
+          Anybody_800ExtraBold: require('@expo-google-fonts/anybody/Anybody_800ExtraBold.ttf'),
+          Anybody_700Bold: require('@expo-google-fonts/anybody/Anybody_700Bold.ttf'),
+          Inter_400Regular: require('@expo-google-fonts/inter/Inter_400Regular.ttf'),
+          Inter_700Bold: require('@expo-google-fonts/inter/Inter_700Bold.ttf'),
+          JetBrainsMono_500Medium: require('@expo-google-fonts/jetbrains-mono/JetBrainsMono_500Medium.ttf'),
+          JetBrainsMono_700Bold: require('@expo-google-fonts/jetbrains-mono/JetBrainsMono_700Bold.ttf'),
         });
       } catch {
+        // Fonts are nice-to-have; system fallback is acceptable.
       }
       setFontsLoaded(true);
     }
     loadFonts();
   }, []);
-
-  useEffect(() => {
-    if (fontsLoaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
 
   if (!fontsLoaded) {
     return (

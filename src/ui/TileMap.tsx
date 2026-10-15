@@ -1,5 +1,6 @@
-﻿import { View, Image, StyleSheet, FlatList } from 'react-native';
+import { View, Image, StyleSheet, FlatList } from 'react-native';
 import { Sprite } from './Sprite';
+import { colors } from '../theme';
 
 interface TileMapProps {
   tiles: string[][];
@@ -13,39 +14,39 @@ const TILE_SIZE = 48;
 const VIEWPORT_W = 11;
 const VIEWPORT_H = 9;
 
+const TILE_REGISTRY: Record<string, any> = {
+  grass_1: require('../../assets/tiles/grass_1.png'),
+  grass_2: require('../../assets/tiles/grass_2.png'),
+  grass_3: require('../../assets/tiles/grass_3.png'),
+  dirt_path: require('../../assets/tiles/dirt_path.png'),
+  stone_path: require('../../assets/tiles/stone_path.png'),
+  stone_wall: require('../../assets/tiles/stone_wall.png'),
+  brick_wall: require('../../assets/tiles/brick_wall.png'),
+  water_1: require('../../assets/tiles/water_1.png'),
+  water_2: require('../../assets/tiles/water_2.png'),
+  tree: require('../../assets/tiles/tree.png'),
+  bush: require('../../assets/tiles/bush.png'),
+  flower: require('../../assets/tiles/flower.png'),
+  door_closed: require('../../assets/tiles/door_closed.png'),
+  door_open: require('../../assets/tiles/door_open.png'),
+  chest_closed: require('../../assets/tiles/chest_closed.png'),
+  chest_open: require('../../assets/tiles/chest_open.png'),
+  dungeon_stone: require('../../assets/tiles/dungeon_stone.png'),
+  fortress_floor: require('../../assets/tiles/fortress_floor.png'),
+  torch_1: require('../../assets/tiles/torch_1.png'),
+  torch_2: require('../../assets/tiles/torch_2.png'),
+  stairs_up: require('../../assets/tiles/stairs_up.png'),
+  stairs_down: require('../../assets/tiles/stairs_down.png'),
+};
+
 function getTileImage(tileType: string): any {
-  const tiles: Record<string, any> = {
-    grass_1: require('../../assets/tiles/grass_1.png'),
-    grass_2: require('../../assets/tiles/grass_2.png'),
-    grass_3: require('../../assets/tiles/grass_3.png'),
-    dirt_1: require('../../assets/tiles/dirt_1.png'),
-    dirt_2: require('../../assets/tiles/dirt_2.png'),
-    stone_1: require('../../assets/tiles/stone_1.png'),
-    stone_2: require('../../assets/tiles/stone_2.png'),
-    water_1: require('../../assets/tiles/water_1.png'),
-    water_2: require('../../assets/tiles/water_2.png'),
-    wall_top: require('../../assets/tiles/wall_top.png'),
-    wall_front: require('../../assets/tiles/wall_front.png'),
-    tree_1: require('../../assets/tiles/tree_1.png'),
-    tree_2: require('../../assets/tiles/tree_2.png'),
-    path_1: require('../../assets/tiles/path_1.png'),
-    path_2: require('../../assets/tiles/path_2.png'),
-    sand_1: require('../../assets/tiles/sand_1.png'),
-    lava_1: require('../../assets/tiles/lava_1.png'),
-    snow_1: require('../../assets/tiles/snow_1.png'),
-    bridge_1: require('../../assets/tiles/bridge_1.png'),
-    stairs_down: require('../../assets/tiles/stairs_down.png'),
-    stairs_up: require('../../assets/tiles/stairs_up.png'),
-    floor_1: require('../../assets/tiles/floor_1.png'),
-    floor_2: require('../../assets/tiles/floor_2.png'),
-    void: require('../../assets/tiles/void.png'),
-  };
-  return tiles[tileType] || tiles.grass_1;
+  return TILE_REGISTRY[tileType] || TILE_REGISTRY.grass_1;
 }
 
 const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
+    backgroundColor: colors.background,
   },
   row: {
     flexDirection: 'row',
@@ -53,6 +54,11 @@ const styles = StyleSheet.create({
   tile: {
     width: TILE_SIZE,
     height: TILE_SIZE,
+  },
+  void: {
+    width: TILE_SIZE,
+    height: TILE_SIZE,
+    backgroundColor: colors.surfaceContainerLowest,
   },
   playerOverlay: {
     position: 'absolute',
@@ -75,11 +81,11 @@ export function TileMap({
   const mapH = tiles.length;
   const mapW = mapH > 0 ? tiles[0].length : 0;
 
-  const rows: { key: string; tiles: { type: string; isPlayer: boolean }[] }[] = [];
+  const rows: { key: string; tiles: { type: string | null; isPlayer: boolean }[] }[] = [];
 
   for (let vy = 0; vy < height; vy++) {
     const my = playerY - halfH + vy;
-    const rowTiles: { type: string; isPlayer: boolean }[] = [];
+    const rowTiles: { type: string | null; isPlayer: boolean }[] = [];
     for (let vx = 0; vx < width; vx++) {
       const mx = playerX - halfW + vx;
       if (my >= 0 && my < mapH && mx >= 0 && mx < mapW) {
@@ -88,21 +94,25 @@ export function TileMap({
           isPlayer: mx === playerX && my === playerY,
         });
       } else {
-        rowTiles.push({ type: 'void', isPlayer: false });
+        rowTiles.push({ type: null, isPlayer: false });
       }
     }
     rows.push({ key: `row-${vy}`, tiles: rowTiles });
   }
 
-  const renderRow = ({ item }: { item: { key: string; tiles: { type: string; isPlayer: boolean }[] } }) => (
+  const renderRow = ({ item }: { item: { key: string; tiles: { type: string | null; isPlayer: boolean }[] } }) => (
     <View style={styles.row}>
       {item.tiles.map((tile, i) => (
         <View key={`${item.key}-tile-${i}`} style={styles.tile}>
-          <Image
-            source={getTileImage(tile.type)}
-            style={styles.tile}
-            resizeMode="stretch"
-          />
+          {tile.type === null ? (
+            <View style={styles.void} />
+          ) : (
+            <Image
+              source={getTileImage(tile.type)}
+              style={styles.tile}
+              resizeMode="stretch"
+            />
+          )}
           {tile.isPlayer && (
             <View style={[StyleSheet.absoluteFill, styles.playerOverlay]}>
               <Sprite sprite="hero" width={TILE_SIZE} height={TILE_SIZE} />

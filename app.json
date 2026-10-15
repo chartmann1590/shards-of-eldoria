@@ -21,9 +21,8 @@
       }
     },
     "plugins": [
-      "expo-router",
-      "expo-av"
+      "expo-router"
     ],
-    "newArchEnabled": true
+    "newArchEnabled": false
   }
 }
